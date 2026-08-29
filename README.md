@@ -5,6 +5,12 @@
 
 > 仅支持人工桌面（N0vaDesktop）2.2.1.4 版本，其他版本请勿使用。
 
+## 免责声明
+
+本项目为非官方第三方工具，与米哈游、HoYoverse 及人工桌面官方无关。
+本项目不提供任何壁纸素材，用户应确保所使用素材来源合法并遵守相关版权规定。
+修改或注入第三方程序可能存在兼容性和数据风险，请在使用前自行备份，相关风险由使用者承担。
+
 ## 构建
 
 要求：VS2022 + CMake 3.20+
@@ -23,6 +29,35 @@ cmake --build build --config Release
 
 ## 使用
 
+### GUI（推荐）
+
+Release 包中的 GUI 可以完成常用操作，无需手动输入命令。请确保以下四个文件位于同一目录：
+
+```text
+n0va-wallpaper-gui.exe
+resources.neu
+n0va_plugin.exe
+n0va_plugin.dll
+```
+
+使用步骤：
+
+1. 解压 Release 包，关闭正在运行的人工桌面。
+2. 运行 `n0va-wallpaper-gui.exe`。
+3. 在“人工桌面路径”中选择 N0vaDesktop 安装目录并点击“保存”。
+4. 点击“安装插件”，等待界面提示安装完成。
+5. 在“导入新壁纸”中选择 PNG、JPG 或 MP4 文件。
+6. 按需填写壁纸名称、游戏分类和作者；类型通常保持“自动判断”即可。
+7. 点击“导入壁纸”。成功后，壁纸会出现在下方的“已导入壁纸”列表中。
+8. 正常启动人工桌面，在“我的壁纸”中找到新壁纸并设置到桌面。
+
+GUI 目前支持设置人工桌面路径、安装/卸载插件、导入壁纸和查看已导入列表。
+删除壁纸、状态检查、故障诊断和开发模式启动等功能仍需使用 CLI。
+
+> 卸载前请先关闭人工桌面，然后在 GUI 中点击“卸载插件”。不要直接删除人工桌面目录中的 `n0va_plugin.dll`，否则人工桌面可能无法启动。
+
+### CLI
+
 ```
 n0va_plugin.exe install                  部署 DLL + 打 DLL 注入补丁（需程序关闭）
 n0va_plugin.exe uninstall                 还原 exe + 移除 DLL（三方 hash 防回退旧版）
@@ -40,7 +75,7 @@ n0va_plugin.exe remove <vid>             删除注入壁纸
 n0va_plugin.exe doctor [--fix-safe]      一致性检查（--fix-force 破坏性修复暂未实现）
 ```
 
-### 使用方式（release 包，推荐）
+### CLI 使用方式（Release 包）
 
 1. 解压 release 包（含 `n0va_plugin.exe` + `n0va_plugin.dll`，GUI 版另有 `n0va-wallpaper-gui.exe` + `resources.neu`），**所有操作都在解压目录进行**
 2. 首次使用：`n0va_plugin.exe set-host "D:\Program Files\N0vaDesktop"`（或直接运行任意命令，自动检测并记录人工桌面位置）
@@ -69,6 +104,7 @@ n0va-wallpaper-plugin/
 ├── core/                 # core.lib: dll_inject / pipe_client / wallpaper_db / fs_helper
 ├── dll/                  # n0va_plugin.dll: dllmain / bootstrap / qt_bridge / injector / pipe_server
 ├── cli/                  # n0va_plugin.exe: 各子命令
+├── gui/                  # Neutralinojs GUI：设置路径、安装/卸载、导入和查看列表
 ├── test/                 # 离线单元测试（BUILD_TESTS=ON）
 └── third_party/Detours/  # Microsoft Detours 4.0.1 (MIT, 不入库, 自行 clone)
 ```
