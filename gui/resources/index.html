@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N0va 壁纸助手</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <h1>N0va 壁纸助手</h1>
+      </div>
+      <span class="subtitle">本地壁纸导入工具</span>
+    </header>
+
+    <section class="panel" id="settingsPanel">
+      <div class="panel-head">
+        <h2>人工桌面路径</h2>
+        <span class="hint">插件需要知道 N0vaDesktop 的安装位置</span>
+      </div>
+      <div class="field">
+        <div class="file-row">
+          <input type="text" id="hostPath" placeholder="未设置" />
+          <button class="btn ghost" id="btnHostBrowse">浏览…</button>
+          <button class="btn ghost" id="btnHostSave">保存</button>
+        </div>
+      </div>
+      <div class="field-row">
+        <button class="btn primary" id="btnInstall">安装插件</button>
+        <button class="btn ghost" id="btnUninstall">卸载插件</button>
+      </div>
+      <div class="status" id="hostStatus"></div>
+    </section>
+
+    <section class="panel" id="injectPanel">
+      <div class="panel-head">
+        <h2>导入新壁纸</h2>
+        <span class="hint">支持 PNG / JPG / MP4</span>
+      </div>
+
+      <div class="field">
+        <label>壁纸文件</label>
+        <div class="file-row">
+          <input type="text" id="filePath" placeholder="未选择文件" readonly />
+          <button class="btn ghost" id="btnBrowse">浏览…</button>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>壁纸名称 <em>（默认取文件名）</em></label>
+          <input type="text" id="wallName" placeholder="可选" />
+        </div>
+        <div class="field">
+          <label>游戏分类 <em>（默认 原神）</em></label>
+          <input type="text" id="gameName" placeholder="原神" list="gameOptions" />
+          <datalist id="gameOptions">
+            <option value="原神"></option>
+            <option value="崩坏3"></option>
+            <option value="崩坏学园2"></option>
+            <option value="崩坏星穹铁道"></option>
+            <option value="绝区零"></option>
+            <option value="yoyo鹿鸣"></option>
+            <option value="米游社"></option>
+            <option value="HOYO-MiX"></option>
+            <option value="预研"></option>
+          </datalist>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>作者 <em>（默认同游戏分类）</em></label>
+          <input type="text" id="authorName" placeholder="可选" />
+        </div>
+        <div class="field">
+          <label>类型</label>
+          <select id="wallFormat">
+            <option value="auto">自动判断（推荐）</option>
+            <option value="static">静态壁纸</option>
+            <option value="dynamic">动态壁纸</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn primary wide" id="btnInject">导入壁纸</button>
+      <div class="status" id="injectStatus"></div>
+    </section>
+
+    <section class="panel" id="listPanel">
+      <div class="panel-head">
+        <h2>已导入壁纸</h2>
+        <button class="btn ghost small" id="btnRefresh">刷新</button>
+      </div>
+      <div class="wall-list" id="wallList">
+        <div class="empty">加载中…</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/neutralino.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

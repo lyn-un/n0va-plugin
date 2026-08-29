@@ -1,0 +1,25 @@
+# 构建产物
+build/
+
+# 第三方库（Detours 需自行获取）
+third_party/
+
+# GUI 构建产物
+gui/bin/
+gui/dist/
+
+# IDE
+.vs/
+.vscode/
+*.user
+
+# 测试素材（非代码）
+test/*.png
+test/*.jpg
+
+# 编译中间文件
+*.obj
+*.pdb
+
+# GUI 第三方客户端库运行时副本（run.bat 从 third_party 复制）
+gui/resources/js/

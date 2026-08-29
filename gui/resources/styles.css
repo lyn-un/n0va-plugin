@@ -1,0 +1,254 @@
+:root {
+  --bg: #f4f6f9;
+  --panel: #ffffff;
+  --panel-2: #f2f5f9;
+  --border: #dde3ea;
+  --text: #1f2733;
+  --muted: #68717f;
+  --accent: #3b82f6;
+  --accent-hover: #2f6fe0;
+  --ok: #16a34a;
+  --err: #dc2626;
+  --warn: #d97706;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  -webkit-user-select: none;
+  user-select: none;
+  overflow-y: auto;
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 22px 18px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ---------- 顶栏 ---------- */
+.topbar {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 4px 2px 2px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.35);
+}
+
+.brand h1 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---------- 面板 ---------- */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(20, 30, 50, 0.05);
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-head h2 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---------- 表单 ---------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+}
+
+.field label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.field label em {
+  font-style: normal;
+  color: #9aa4b1;
+  font-size: 11px;
+}
+
+.field-row {
+  display: flex;
+  gap: 14px;
+}
+
+.field-row > .btn {
+  flex: 1;
+}
+
+.file-row {
+  display: flex;
+  gap: 10px;
+}
+
+input[type="text"], select {
+  width: 100%;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+input[type="text"]:focus, select:focus {
+  border-color: var(--accent);
+  background: #ffffff;
+}
+
+input::placeholder {
+  color: #9aa4b1;
+}
+
+select {
+  cursor: pointer;
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s, transform 0.06s;
+  white-space: nowrap;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn.primary:hover:not(:disabled) { background: var(--accent-hover); }
+
+.btn.ghost {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn.ghost:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+
+.btn.small { padding: 6px 12px; font-size: 12px; }
+
+.btn.wide { width: 100%; }
+
+/* ---------- 状态行 ---------- */
+.status {
+  min-height: 18px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.status.ok { color: var(--ok); }
+.status.err { color: var(--err); }
+
+/* ---------- 壁纸列表 ---------- */
+.wall-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.wall-list::-webkit-scrollbar { width: 8px; }
+.wall-list::-webkit-scrollbar-thumb {
+  background: #cbd3dd;
+  border-radius: 4px;
+}
+.wall-list::-webkit-scrollbar-thumb:hover { background: #b0bac6; }
+
+.empty {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  padding: 22px 0;
+}
+
+.wall-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.wall-item .w-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
